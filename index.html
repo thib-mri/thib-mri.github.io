@@ -75,7 +75,10 @@
   <script>
     function updateSocialsFade() {
       const socials = document.getElementById('socials-fade');
-      if (document.body.scrollHeight <= window.innerHeight) {
+      const scrollable =
+        document.documentElement.scrollHeight > window.innerHeight ||
+        document.body.scrollHeight > window.innerHeight;
+      if (!scrollable) {
         socials.classList.add('visible');
       } else if(window.scrollY > 20) {
         socials.classList.add('visible');
@@ -86,6 +89,13 @@
     window.addEventListener('scroll', updateSocialsFade);
     window.addEventListener('resize', updateSocialsFade);
     window.addEventListener('DOMContentLoaded', updateSocialsFade);
+    window.addEventListener('load', updateSocialsFade);
+    setTimeout(() => {
+      const socials = document.getElementById('socials-fade');
+      if (socials && !socials.classList.contains('visible')) {
+        socials.classList.add('visible');
+      }
+    }, 2000);
   </script>
 </body>
 </html>
