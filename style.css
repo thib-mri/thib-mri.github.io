@@ -1410,8 +1410,8 @@ body {
   transition: box-shadow 0.2s, border-color 0.2s;
 }
 .timeline-card-modern:hover {
-  box-shadow: 0 12px 48px 0 rgba(0,0,0,0.45), 0 0 0 4px rgba(79,140,255,0.08) inset;
-  border-color: #4f8cff;
+  box-shadow: 0 12px 48px 0 rgba(0,0,0,0.55), 0 0 0 4px rgba(79,140,255,0.04) inset;
+  border-color: #232323;
 }
 .timeline-date-modern {
   position: absolute;
