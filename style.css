@@ -1469,64 +1469,80 @@ body {
   }
 }
 
-.mobile-warning-overlay {
+.mobile-warning-popup {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(10,10,15,0.97);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
   display: none;
   align-items: center;
   justify-content: center;
-  z-index: 99999;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
 }
-.mobile-warning-content {
+
+.mobile-warning-popup-content {
   background: #181a20;
-  border-radius: 18px;
-  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45), 0 0 0 2px rgba(255,255,255,0.04) inset;
-  padding: 2.2rem 2rem;
+  border-radius: 16px;
+  padding: 2rem;
   text-align: center;
-  max-width: 90vw;
+  max-width: 320px;
+  margin: 1rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-.mobile-warning-content h2 {
+
+.mobile-warning-popup-content h3 {
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.3rem;
   margin-bottom: 1rem;
+  font-weight: 600;
 }
-.mobile-warning-content p {
+
+.mobile-warning-popup-content p {
   color: #e0e0e0;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.4;
 }
+
 #mobile-warning-btn {
   background: #4f8cff;
   color: #fff;
-  border-radius: 10px;
-  padding: 0.7rem 2.2rem;
-  font-size: 1.1rem;
   border: none;
+  border-radius: 8px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
-  transition: background 0.2s, transform 0.2s;
   cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(79, 140, 255, 0.3);
 }
+
 #mobile-warning-btn:hover {
   background: #3566b8;
-  transform: translateY(-2px) scale(1.04);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 140, 255, 0.4);
 }
+
 @media (max-width: 600px) {
-  .mobile-warning-content {
-    padding: 1.1rem 0.5rem;
-    border-radius: 10px;
+  .mobile-warning-popup-content {
+    padding: 1.5rem;
+    max-width: 280px;
   }
-  .mobile-warning-content h2 {
-    font-size: 1.2rem;
+  
+  .mobile-warning-popup-content h3 {
+    font-size: 1.1rem;
   }
-  .mobile-warning-content p {
-    font-size: 0.95rem;
+  
+  .mobile-warning-popup-content p {
+    font-size: 0.9rem;
   }
+  
   #mobile-warning-btn {
-    font-size: 0.95rem;
-    padding: 0.5rem 1.2rem;
-    border-radius: 7px;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
   }
 } 

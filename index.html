@@ -111,9 +111,9 @@
     };
     runFloatingCode();
   </script>
-  <div id="mobile-warning-overlay" class="mobile-warning-overlay">
-    <div class="mobile-warning-content">
-      <h2>Attention !</h2>
+  <div id="mobile-warning-popup" class="mobile-warning-popup">
+    <div class="mobile-warning-popup-content">
+      <h3>⚠️ Attention !</h3>
       <p>Le site n'est pas optimisé pour la version téléphone !</p>
       <button id="mobile-warning-btn">Accéder quand même</button>
     </div>
@@ -124,20 +124,18 @@
     }
     
     window.addEventListener('DOMContentLoaded', function() {
-      const mobileOverlay = document.getElementById('mobile-warning-overlay');
+      const mobilePopup = document.getElementById('mobile-warning-popup');
       const mobileBtn = document.getElementById('mobile-warning-btn');
       
       // Vérifier si c'est un mobile et si l'utilisateur n'a pas encore accepté
       if (isMobileDevice() && !sessionStorage.getItem('mobileWarningAccepted')) {
-        mobileOverlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        mobilePopup.style.display = 'flex';
       }
       
       // Gestion du bouton "Accéder quand même"
       mobileBtn.addEventListener('click', function() {
         sessionStorage.setItem('mobileWarningAccepted', 'true');
-        mobileOverlay.style.display = 'none';
-        document.body.style.overflow = '';
+        mobilePopup.style.display = 'none';
       });
     });
   </script>
