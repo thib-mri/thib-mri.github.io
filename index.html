@@ -123,12 +123,21 @@
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
     window.addEventListener('DOMContentLoaded', function() {
-      if (isMobileDevice() && window.location.pathname.indexOf('mobile-warning.html') === -1) {
+      if (isMobileDevice()) {
         // Vérifier si l'utilisateur a déjà accepté l'avertissement
         if (!sessionStorage.getItem('mobileWarningAccepted')) {
-          window.location.href = 'mobile-warning.html';
+          document.getElementById('mobile-warning-overlay').style.display = 'flex';
+          document.body.style.overflow = 'hidden';
         }
       }
+      
+      document.getElementById('mobile-warning-btn').onclick = function() {
+        // Marquer que l'utilisateur a accepté l'avertissement
+        sessionStorage.setItem('mobileWarningAccepted', 'true');
+        // Masquer l'overlay et débloquer le scroll
+        document.getElementById('mobile-warning-overlay').style.display = 'none';
+        document.body.style.overflow = '';
+      };
     });
   </script>
 </body>
