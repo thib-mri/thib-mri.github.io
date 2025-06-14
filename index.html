@@ -38,7 +38,7 @@
         <p class="hero-subtitle">Développeur créatif & passionné</p>
         <div class="hero-description">
           <p>Passionné par la création d'expériences numériques</p>
-          <p>LE SITE N'EST PAS ENCORE TERMINÉ POUR LA VERSION TELEPHONE ! C'EST POURQUOI IL QU'IL Y A DES BUGS</p>
+          <p>LE SITE N'EST PAS ENCORE TERMINÉ POUR LA VERSION TELEPHONE ! C'EST POURQUOI QU'IL Y A DES BUGS</p>
         </div>
       </div>
       
@@ -110,6 +110,28 @@
       window.scrollTo({top: 0, behavior: 'smooth'});
     };
     runFloatingCode();
+  </script>
+  <div id="mobile-warning-overlay" class="mobile-warning-overlay">
+    <div class="mobile-warning-content">
+      <h2>Attention !</h2>
+      <p>Le site n'est pas optimisé pour la version téléphone !</p>
+      <button id="mobile-warning-btn">Accéder quand même</button>
+    </div>
+  </div>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    window.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.getElementById('mobile-warning-overlay').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      document.getElementById('mobile-warning-btn').onclick = function() {
+        document.getElementById('mobile-warning-overlay').style.display = 'none';
+        document.body.style.overflow = '';
+      };
+    });
   </script>
 </body>
 </html>
