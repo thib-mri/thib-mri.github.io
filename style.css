@@ -956,34 +956,26 @@ body {
 #socials-fade {
   position: fixed;
   left: 50%;
-  bottom: 3.5rem;
+  bottom: 2.5rem;
   transform: translateX(-50%) translateY(40px);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 2.5rem;
   align-items: center;
   justify-content: center;
-  text-align: center;
   opacity: 0;
   pointer-events: none;
   z-index: 200;
-  transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+  transition: opacity 0.5s cubic-bezier(.4,0,.2,1), transform 0.5s cubic-bezier(.4,0,.2,1);
 }
 #socials-fade.visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateX(-50%) translateY(0);
 }
-.socials-row {
-  display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1.7rem;
-}
 .social-square {
-  width: 6.5rem;
-  height: 6.5rem;
+  width: 5.5rem;
+  height: 5.5rem;
   background: rgba(20, 20, 20, 0.97);
   border: 2px solid rgba(255,255,255,0.09);
   border-radius: 18px;
@@ -999,61 +991,22 @@ body {
   transform: scale(1.08);
 }
 .social-square img, .social-square svg {
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 2.8rem;
+  height: 2.8rem;
   object-fit: contain;
   filter: grayscale(1) contrast(1.2);
 }
-.thibault-particles {
-  position: relative;
-  text-align: center;
-  font-size: 2.2rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.5rem;
-  color: #fff;
-  margin-top: 0.5rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.thibault-particles .particles {
-  position: absolute;
-  left: 0; right: 0; top: 0; bottom: 0;
-  pointer-events: none;
-}
-.socials-coming {
-  text-align: center;
-  color: #aaa;
-  font-size: 1rem;
-  margin-top: 0.2rem;
-  font-weight: 400;
-  width: 100%;
-}
 @media (max-width: 768px) {
   #socials-fade {
+    gap: 1.1rem;
     bottom: 1.2rem;
   }
-  .socials-row {
-    gap: 1.1rem;
-    margin-bottom: 1rem;
-  }
   .social-square {
-    width: 3.7rem;
-    height: 3.7rem;
+    width: 3.2rem;
+    height: 3.2rem;
   }
   .social-square img, .social-square svg {
-    width: 1.7rem;
-    height: 1.7rem;
-  }
-  .thibault-particles {
-    font-size: 1.2rem;
-    margin-bottom: 0.2rem;
-    margin-top: 0.2rem;
-  }
-  .socials-coming {
-    font-size: 0.85rem;
+    width: 1.4rem;
+    height: 1.4rem;
   }
 } 
