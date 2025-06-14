@@ -75,10 +75,13 @@
   <script>
     window.addEventListener('scroll', function() {
       const socials = document.getElementById('socials-fade');
+      console.log('scrollY:', window.scrollY);
       if(window.scrollY > 20) {
         socials.classList.add('visible');
+        console.log('Ajout de la classe visible');
       } else {
         socials.classList.remove('visible');
+        console.log('Suppression de la classe visible');
       }
     });
   </script>
