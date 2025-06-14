@@ -75,6 +75,9 @@
   </div>
   <script>
     document.getElementById('mobile-warning-btn').onclick = function() {
+      // Marquer que l'utilisateur a accepté l'avertissement
+      sessionStorage.setItem('mobileWarningAccepted', 'true');
+      // Rediriger vers l'accueil
       window.location.href = 'index.html';
     };
   </script>

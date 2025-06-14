@@ -124,7 +124,10 @@
     }
     window.addEventListener('DOMContentLoaded', function() {
       if (isMobileDevice() && window.location.pathname.indexOf('mobile-warning.html') === -1) {
-        window.location.href = 'mobile-warning.html';
+        // Vérifier si l'utilisateur a déjà accepté l'avertissement
+        if (!sessionStorage.getItem('mobileWarningAccepted')) {
+          window.location.href = 'mobile-warning.html';
+        }
       }
     });
   </script>
