@@ -5,7 +5,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interactive Code Editor - Portfolio Thibault</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #111216;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ice-ide {
+      background: #181a20;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px 0 rgba(0,0,0,0.45), 0 0 0 2px rgba(255,255,255,0.04) inset;
+      max-width: 600px;
+      width: 98vw;
+      padding: 0 0 1.2rem 0;
+      margin: 2rem auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .ice-ide-bar {
+      height: 32px;
+      background: #23242a;
+      display: flex;
+      align-items: center;
+      padding: 0 1.2rem;
+      border-bottom: 1.5px solid #232323;
+      gap: 8px;
+    }
+    .ice-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .ice-dot.red { background: #ff5f56; }
+    .ice-dot.yellow { background: #ffbd2e; }
+    .ice-dot.green { background: #27c93f; }
+    .ice-editor {
+      width: 100%;
+      padding: 1.2rem 1.5rem 0.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .ice-textarea {
+      width: 100%;
+      min-height: 260px;
+      background: #181a20;
+      color: #f8f8f2;
+      font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1.05rem;
+      border: none;
+      border-radius: 10px;
+      padding: 1.1rem 1rem;
+      outline: none;
+      resize: none;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+      margin-bottom: 1.1rem;
+      transition: box-shadow 0.2s;
+    }
+    .ice-textarea:focus {
+      box-shadow: 0 0 0 2px #4f8cff;
+    }
+    .ice-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .ice-actions button {
+      background: linear-gradient(90deg, #232323 0%, #353535 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+    }
+    .ice-actions button:hover {
+      background: linear-gradient(90deg, #4f8cff 0%, #232323 100%);
+      color: #fff;
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 600px) {
+      .ice-ide {
+        max-width: 99vw;
+        border-radius: 10px;
+        padding: 0 0 0.7rem 0;
+      }
+      .ice-ide-bar {
+        height: 22px;
+        padding: 0 0.5rem;
+      }
+      .ice-editor {
+        padding: 0.7rem 0.5rem 0.2rem 0.5rem;
+      }
+      .ice-textarea {
+        min-height: 120px;
+        font-size: 0.92rem;
+        border-radius: 7px;
+        padding: 0.7rem 0.6rem;
+      }
+      .ice-actions button {
+        font-size: 0.9rem;
+        padding: 0.4rem 1rem;
+        border-radius: 6px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="noise-overlay"></div>
@@ -26,26 +137,19 @@
       </div>
     </div>
   </nav>
-  <main class="editor-section">
-    <div class="editor-header">
-      <h1 class="section-title">Interactive Code Editor</h1>
-      <p class="section-subtitle">Teste du code HTML/CSS/JS en temps réel !</p>
-    </div>
-    <div class="editor-window">
-      <div class="editor-ide-bar">
-        <span class="ide-dot red"></span>
-        <span class="ide-dot yellow"></span>
-        <span class="ide-dot green"></span>
+  <main>
+    <div class="ice-ide">
+      <div class="ice-ide-bar">
+        <span class="ice-dot red"></span>
+        <span class="ice-dot yellow"></span>
+        <span class="ice-dot green"></span>
       </div>
-      <div class="editor-col editor-code">
-        <textarea id="code-input" spellcheck="false"></textarea>
-        <div class="editor-actions">
-          <button id="reset-btn">Reset</button>
-          <button id="run-btn">Run</button>
+      <div class="ice-editor">
+        <textarea class="ice-textarea" id="iceTextarea" spellcheck="false"></textarea>
+        <div class="ice-actions">
+          <button id="iceReset">Reset</button>
+          <button id="iceRun">Run</button>
         </div>
-      </div>
-      <div class="editor-col editor-preview">
-        <iframe id="code-output"></iframe>
       </div>
     </div>
   </main>
@@ -55,21 +159,19 @@
     <div class="float-element float-3"></div>
   </div>
   <script>
-    const defaultCode = `<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      min-height: 100vh;\n      margin: 0;\n      background: #1a1a1a;\n    }\n    .box {\n      width: 80px;\n      height: 80px;\n      background: #4f8cff;\n      border-radius: 12px;\n      box-shadow: 0 4px 24px #4f8cff44;\n      animation: bounce 1.2s infinite alternate;\n    }\n    @keyframes bounce {\n      0% { transform: translateY(0); }\n      100% { transform: translateY(-40px); }\n    }\n  </style>\n</head>\n<body>\n  <div class='box'></div>\n</body>\n</html>`;
-    const codeInput = document.getElementById('code-input');
-    const codeOutput = document.getElementById('code-output');
-    const runBtn = document.getElementById('run-btn');
-    const resetBtn = document.getElementById('reset-btn');
-    codeInput.value = defaultCode;
-    function runCode() {
-      codeOutput.srcdoc = codeInput.value;
-    }
-    runBtn.onclick = runCode;
-    resetBtn.onclick = function() {
-      codeInput.value = defaultCode;
-      runCode();
+    const defaultICECode = `<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      min-height: 100vh;\n      margin: 0;\n      background: #1a1a1a;\n    }\n    h1 {\n      color: #4f8cff;\n      font-family: 'Fira Mono', monospace;\n      font-size: 2.2rem;\n    }\n  </style>\n</head>\n<body>\n  <h1>Hello, ICE !</h1>\n</body>\n</html>`;
+    const iceTextarea = document.getElementById('iceTextarea');
+    const iceReset = document.getElementById('iceReset');
+    const iceRun = document.getElementById('iceRun');
+    iceTextarea.value = defaultICECode;
+    iceReset.onclick = function() {
+      iceTextarea.value = defaultICECode;
     };
-    runCode();
+    iceRun.onclick = function() {
+      const win = window.open();
+      win.document.write(iceTextarea.value);
+      win.document.close();
+    };
   </script>
 </body>
 </html> 
