@@ -122,22 +122,23 @@
     function isMobileDevice() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
+    
     window.addEventListener('DOMContentLoaded', function() {
-      if (isMobileDevice()) {
-        // Vérifier si l'utilisateur a déjà accepté l'avertissement
-        if (!sessionStorage.getItem('mobileWarningAccepted')) {
-          document.getElementById('mobile-warning-overlay').style.display = 'flex';
-          document.body.style.overflow = 'hidden';
-        }
+      const mobileOverlay = document.getElementById('mobile-warning-overlay');
+      const mobileBtn = document.getElementById('mobile-warning-btn');
+      
+      // Vérifier si c'est un mobile et si l'utilisateur n'a pas encore accepté
+      if (isMobileDevice() && !sessionStorage.getItem('mobileWarningAccepted')) {
+        mobileOverlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
       }
       
-      document.getElementById('mobile-warning-btn').onclick = function() {
-        // Marquer que l'utilisateur a accepté l'avertissement
+      // Gestion du bouton "Accéder quand même"
+      mobileBtn.addEventListener('click', function() {
         sessionStorage.setItem('mobileWarningAccepted', 'true');
-        // Masquer l'overlay et débloquer le scroll
-        document.getElementById('mobile-warning-overlay').style.display = 'none';
+        mobileOverlay.style.display = 'none';
         document.body.style.overflow = '';
-      };
+      });
     });
   </script>
 </body>
