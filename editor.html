@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Code Editor - Portfolio Thibault</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="aurora-container">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+  </div>
+  <nav class="nav-modern">
+    <div class="nav-container">
+      <div class="nav-logo">THIB.MRI</div>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="projets.html" class="nav-link">Projets</a>
+        <a href="parcours.html" class="nav-link">Parcours</a>
+        <a href="reseaux.html" class="nav-link">Réseaux Sociaux</a>
+        <a href="editor.html" class="nav-link active">Interactive Code Editor</a>
+      </div>
+    </div>
+  </nav>
+  <main class="editor-section">
+    <div class="editor-header">
+      <h1 class="section-title">Interactive Code Editor</h1>
+      <p class="section-subtitle">Teste du code HTML/CSS/JS en temps réel !</p>
+    </div>
+    <div class="editor-window">
+      <div class="editor-col editor-code">
+        <textarea id="code-input" spellcheck="false"></textarea>
+        <div class="editor-actions">
+          <button id="reset-btn">Reset</button>
+          <button id="run-btn">Run</button>
+        </div>
+      </div>
+      <div class="editor-col editor-preview">
+        <iframe id="code-output"></iframe>
+      </div>
+    </div>
+  </main>
+  <div class="floating-elements">
+    <div class="float-element float-1"></div>
+    <div class="float-element float-2"></div>
+    <div class="float-element float-3"></div>
+  </div>
+  <script>
+    const defaultCode = `<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body {\n      display: flex;\n      justify-content: center;\n      align-items: center;\n      min-height: 100vh;\n      margin: 0;\n      background: #1a1a1a;\n    }\n    .box {\n      width: 80px;\n      height: 80px;\n      background: #4f8cff;\n      border-radius: 12px;\n      box-shadow: 0 4px 24px #4f8cff44;\n      animation: bounce 1.2s infinite alternate;\n    }\n    @keyframes bounce {\n      0% { transform: translateY(0); }\n      100% { transform: translateY(-40px); }\n    }\n  </style>\n</head>\n<body>\n  <div class='box'></div>\n</body>\n</html>`;
+    const codeInput = document.getElementById('code-input');
+    const codeOutput = document.getElementById('code-output');
+    const runBtn = document.getElementById('run-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    codeInput.value = defaultCode;
+    function runCode() {
+      codeOutput.srcdoc = codeInput.value;
+    }
+    runBtn.onclick = runCode;
+    resetBtn.onclick = function() {
+      codeInput.value = defaultCode;
+      runCode();
+    };
+    runCode();
+  </script>
+</body>
+</html> 
