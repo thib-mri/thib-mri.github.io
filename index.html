@@ -73,17 +73,19 @@
     </a>
   </div>
   <script>
-    window.addEventListener('scroll', function() {
+    function updateSocialsFade() {
       const socials = document.getElementById('socials-fade');
-      console.log('scrollY:', window.scrollY);
-      if(window.scrollY > 20) {
+      if (document.body.scrollHeight <= window.innerHeight) {
         socials.classList.add('visible');
-        console.log('Ajout de la classe visible');
+      } else if(window.scrollY > 20) {
+        socials.classList.add('visible');
       } else {
         socials.classList.remove('visible');
-        console.log('Suppression de la classe visible');
       }
-    });
+    }
+    window.addEventListener('scroll', updateSocialsFade);
+    window.addEventListener('resize', updateSocialsFade);
+    window.addEventListener('DOMContentLoaded', updateSocialsFade);
   </script>
 </body>
 </html>

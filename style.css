@@ -967,7 +967,6 @@ body {
   pointer-events: none;
   z-index: 99999;
   transition: opacity 0.3s cubic-bezier(.4,0,.2,1), transform 0.3s cubic-bezier(.4,0,.2,1);
-  background: rgba(255,0,0,0.08); /* debug, à retirer ensuite */
 }
 #socials-fade.visible {
   opacity: 1 !important;
