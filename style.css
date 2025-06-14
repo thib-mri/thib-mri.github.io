@@ -1397,4 +1397,74 @@ body {
   .editor-col {
     padding: 0.5rem 0.1rem 0.5rem 0.1rem;
   }
+}
+
+.timeline-card-modern {
+  position: relative;
+  background: #181a20;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35), 0 0 0 2px rgba(255,255,255,0.04) inset;
+  border: 1.5px solid #232323;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.timeline-card-modern:hover {
+  box-shadow: 0 12px 48px 0 rgba(0,0,0,0.45), 0 0 0 4px rgba(79,140,255,0.08) inset;
+  border-color: #4f8cff;
+}
+.timeline-date-modern {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.5rem;
+  background: #23242a;
+  border-radius: 16px;
+  padding: 0.4rem 1.2rem;
+  font-weight: 600;
+  color: #e0e0e0;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  border: 1px solid #232323;
+  z-index: 2;
+}
+.timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+.tag {
+  background: #23242a;
+  color: #e0e0e0;
+  border-radius: 12px;
+  padding: 0.35rem 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1px solid #232323;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.10);
+}
+.tag:hover {
+  background: #4f8cff;
+  color: #fff;
+  border-color: #4f8cff;
+}
+@media (max-width: 900px) {
+  .timeline-card-modern {
+    padding: 1.1rem;
+    border-radius: 12px;
+  }
+  .timeline-date-modern {
+    top: 0.7rem;
+    right: 1rem;
+    font-size: 0.92rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+  }
+  .tag {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9px;
+  }
 } 
