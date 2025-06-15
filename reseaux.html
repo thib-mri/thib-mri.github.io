@@ -18,7 +18,10 @@
   <nav class="nav-modern">
     <div class="nav-container">
       <div class="nav-logo">THIB.MRI</div>
-      <div class="nav-links" style="flex-wrap: wrap;">
+      <div class="burger" id="burgerMenu">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-links" id="navLinks" style="flex-wrap: wrap;">
         <a href="index.html" class="nav-link">Accueil</a>
         <a href="projets.html" class="nav-link">Projets</a>
         <a href="parcours.html" class="nav-link">Parcours</a>
@@ -53,5 +56,13 @@
     <div class="float-element float-2"></div>
     <div class="float-element float-3"></div>
   </div>
+  <script>
+    const burger = document.getElementById('burgerMenu');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+  </script>
 </body>
 </html> 
