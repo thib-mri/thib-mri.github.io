@@ -128,14 +128,13 @@
       const mobilePopup = document.getElementById('mobile-warning-popup');
       const mobileBtn = document.getElementById('mobile-warning-btn');
       
-      // Vérifier si c'est un mobile et si l'utilisateur n'a pas encore accepté
-      if (isMobileDevice() && !sessionStorage.getItem('mobileWarningAccepted')) {
+      // Afficher la popup à chaque fois sur mobile
+      if (isMobileDevice()) {
         mobilePopup.style.display = 'flex';
       }
       
       // Gestion du bouton "Accéder quand même"
       mobileBtn.addEventListener('click', function() {
-        sessionStorage.setItem('mobileWarningAccepted', 'true');
         mobilePopup.style.display = 'none';
       });
     });
